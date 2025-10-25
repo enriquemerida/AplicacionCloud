@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Aplicación Segura UMG</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); color: white; text-align: center; padding-top: 100px; }
+        h1 { font-size: 48px; text-transform: uppercase; letter-spacing: 3px; }
+        .logout { position: absolute; top: 20px; right: 30px; }
+        .logout button { background: #ff5252; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="logout">
+        <form th:action="@{/logout}" method="post">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+            <button type="submit">Salir 🔒</button>
+        </form>
+    </div>
+    <h1>Aplicación Segura UMG</h1>
+    <p>Bienvenido, <b th:text="${user}">usuario</b> 👋</p>
+</body>
+</html>

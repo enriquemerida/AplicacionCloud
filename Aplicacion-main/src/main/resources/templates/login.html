@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar Sesión</title>
+    <style>
+        body { background: linear-gradient(135deg, #2c5364, #203a43, #0f2027); 
+               display: flex; align-items: center; justify-content: center; 
+               height: 100vh; font-family: Arial; }
+        .login-container { background: rgba(255, 255, 255, 0.1); padding: 30px; 
+            border-radius: 10px; text-align: center; color: white; backdrop-filter: blur(5px); width: 300px; }
+        input { width: 100%; padding: 10px; margin: 10px 0; border: none; border-radius: 5px; }
+        button { background-color: #00a8ff; border: none; padding: 10px; width: 100%; color: white; font-size: 16px; border-radius: 5px; cursor: pointer; }
+        button:hover { background-color: #0091e6; }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Iniciar Sesión</h2>
+        <div th:if="${param.error}" style="background: rgba(255,0,0,0.2); padding:5px; border-radius:5px; margin-bottom:10px;">
+            Usuario o contraseña incorrectos
+        </div>
+<form th:action="@{/login}" method="post">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+    <input type="text" name="username" placeholder="Usuario" required>
+    <input type="password" name="password" placeholder="Contraseña" required>
+    <button type="submit">Ingresar</button>
+</form>
+
+    </div>
+</body>
+</html>

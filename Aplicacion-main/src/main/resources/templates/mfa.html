@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Verificación MFA</title>
+  <style>
+    body{background:#203a43;color:white;text-align:center;padding-top:100px;font-family:Arial}
+    form{display:inline-block;background:rgba(255,255,255,.1);padding:20px;border-radius:10px}
+    input{padding:10px;border:none;border-radius:5px;margin:10px;width:200px}
+    button{padding:10px 20px;border:none;border-radius:5px;background:#00a8ff;color:white;cursor:pointer}
+    .err{color:#ff9b9b;margin:8px 0}
+  </style>
+</head>
+<body>
+  <h2>Verificación en dos pasos</h2>
+  <p>Ingresa el código temporal enviado</p>
+  <div th:if="${error}" class="err">Código incorrecto</div>
+
+  <!-- IMPORTANTE: acción correcta y token CSRF -->
+  <form th:action="@{/mfa}" method="post">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+    <input type="text" name="code" placeholder="Código MFA" required>
+    <button type="submit">Verificar</button>
+  </form>
+
+  <p style="margin-top:12px;opacity:.8;font-size:12px">
+    Revisa la consola: aparece “Código MFA para &lt;usuario&gt;: xxxxxx”
+  </p>
+</body>
+</html>
